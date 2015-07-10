@@ -267,7 +267,7 @@ Now array1 and array2 are referencing the same array object. If we change the ar
 That means that the changes are reflected in both variables, even if the modification only happened through one of the two variables.
 A reference type can be referenced by multiple owners. Here's an illustration of what the ownership looks like after the four lines of code above:
 
-![](https://bitmakerlabs.s3.amazonaws.com/lectures/mobile/powerpoints/reference_types.png"")
+![](https://bitmakerlabs.s3.amazonaws.com/lectures/mobile/powerpoints/reference_types.png)
 
 ## Value Types
 
@@ -286,7 +286,7 @@ In the second line we declare a new variable called array2 and assign array1 to 
 This time the variable array2 is not affected by this change, since it has its own private copy that is not affected by changes to the array stored in the array1 variable. Here's what the ownership diagram looks like for this example:
 
 
-![](https://bitmakerlabs.s3.amazonaws.com/lectures/mobile/powerpoints/value_types.png"")
+![](https://bitmakerlabs.s3.amazonaws.com/lectures/mobile/powerpoints/value_types.png)
 
 
 
