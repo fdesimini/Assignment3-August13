@@ -376,6 +376,9 @@ Try adding the following to playground
 
 
 */
-
-
-var str = "Hello, playground"
+struct ToDoItem {
+    var title:String
+    var content:String
+    var dueDate:NSDate
+    let owner:String
+}
