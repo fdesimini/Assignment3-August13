@@ -8,8 +8,6 @@ Closures can capture and store references to any constants and variables from th
 
 */
 
-
-
 /*:
 
 ## Closures
@@ -69,6 +67,41 @@ Variadic functions are functions that have a variable number of arguments (indic
 ### Before continuing on, try these examples in playground. This will give you a feel for how functions are create and serve as a refresher.
 
 */
+func jediGreet(name: String, ability: String) -> (farewell: String, mayTheForceBeWithYou: String)
+
+{
+    return ("Good bye, \(name).", " May the \(ability) be with you.")
+}
+
+jediGreet("Frank", "Drinking")
+
+let retValue = jediGreet("old friend", "Force")
+print(retValue)
+print(retValue.farewell)
+print(retValue.mayTheForceBeWithYou)
+
+func sum(x:Int, y:Int) ->(Int) {return x + y}
+
+func jediTrainer() ->((String, Int) ->String) {
+
+    func train(name:String,times:Int) -> (String){
+        return "\(name) has been trained in the force \(times) times"
+    }
+    
+    return train
+}
+
+let train = jediTrainer()
+train("Obi Wan", 3)
+
+func jediBladeColor (colors:String...) ->() {
+    for color in colors {
+        println("\(color)")
+    }
+}
+
+jediBladeColor("red","green","blue")
+
 
 /*:
 
@@ -113,6 +146,21 @@ Furthermore, when a closure is the last argument of a function, parenthesis can 
 ### Before continuing on, try these examples in playground. 
 
 */
+let padawans = ["Knox","Avitla","Mennaus"]
+
+padawans.map({
+    
+    (padawan:String) -> String in "\(padawan) has been trained"
+    
+})
+
+func applyMultiplication(value:Int, multiFunction:Int -> Int) ->Int {
+    return multiFunction(value)
+}
+
+applyMultiplication(2,{value in value * 3})
+
+applyMultiplication(2,{$0 * 3})
 
 
 /*:
@@ -154,8 +202,17 @@ What each valid number means is either stored in your head or in a comment somew
 If someone tries to use an invalid numerical value, the compiler won’t warn you and your code will fail at runtime.
 
 */
+enum Direction {
+    case North, South, East, West
+}
 
+let myDirection = Direction.North
 
+if myDirection != Direction.North {
+    println("you are facing North")
+} else {
+    println("you are facing not North")
+}
 
 /*:
 
@@ -213,7 +270,15 @@ Raw value enums whose raw values are of the Int type are treated slightly differ
 * }
 
 */
+enum Title:String {
+    case CEO = "Chief Executive Officer"
+    case CTO = "Chief Technical Officer"
+    case CFO = "Chief Financial Officer"
+}
 
+let myString:String = Title.CEO.rawValue
+let myTitle:Title = Title(rawValue:"Chief Exec Officer")!
+let badTitle:Title? = Title(rawValue:"not a valid title")
 
 /*:
 ## Associated Value Enum
@@ -241,6 +306,13 @@ The associated values need not be labeled. The above example can be more concise
 * let myQRCode = Barcode.QRCode("http://example.com")
 
 */
+enum Barcode {
+    case UPCA(sys:Int, data:Int, check:Int)
+    case QRCode(data:String)
+}
+
+let myNormalBarcode = Barcode.UPCA(sys: 0, data:2791701919, check:3)
+let myQRCode = Barcode.QRCode(data:"http://example.com")
 
 
 /*:
